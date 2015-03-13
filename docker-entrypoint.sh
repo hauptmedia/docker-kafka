@@ -3,12 +3,12 @@ set -e
 
 if [ -z "$HOST_NAME" ]; then
 	#use container's ip address if host name was specified
-	HOST_NAME=$(hostname --ip-address)
+	HOST_NAME=$(hostname)
 fi
 
 if [ -z "$ADVERTISED_HOST_NAME" ]; then
 	#use container's ip address if host name was specified
-	ADVERTISED_HOST_NAME=$(hostname --ip-address)
+	ADVERTISED_HOST_NAME=$(hostname)
 fi
 
 sed 's/#advertised.host.name=<hostname routable by clients>/'advertised.host.name=${ADVERTISED_HOST_NAME}'/' -i config/server.properties

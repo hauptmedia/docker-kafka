@@ -14,7 +14,7 @@ ENV		KAFKA_INSTALL_DIR	/opt/kafka
 
 # install needed debian packages & clean up
 RUN		apt-get update && \
-		apt-get install -y --no-install-recommends curl tar ca-certificates && \
+		apt-get install -y --no-install-recommends curl tar ca-certificates python && 
 		apt-get clean autoclean && \
         	apt-get autoremove --yes && \
         	rm -rf /var/lib/{apt,dpkg,cache,log}/

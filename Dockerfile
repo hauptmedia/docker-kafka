@@ -2,9 +2,6 @@ FROM		hauptmedia/java:oracle-java7
 
 ENV     	DEBIAN_FRONTEND noninteractive
 
-ENV             RUN_USER            daemon
-ENV             RUN_GROUP           daemon
-
 ENV		SCALA_VERSION		2.10
 ENV		KAFKA_VERSION		0.8.2.0
 ENV		KAFKA_RELEASE_ARCHIVE	kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
@@ -21,10 +18,8 @@ RUN		apt-get update && \
 
 # download and extract kafka 
 RUN		mkdir -p ${KAFKA_INSTALL_DIR} && \
-		curl -L --silent ${KAFKA_DOWNLOAD_URL} | tar -xz --strip=1 -C ${KAFKA_INSTALL_DIR} && \
-		chown -R ${RUN_USER}:${RUN_GROUP} ${KAFKA_INSTALL_DIR}
+		curl -L --silent ${KAFKA_DOWNLOAD_URL} | tar -xz --strip=1 -C ${KAFKA_INSTALL_DIR}
 
-USER            ${RUN_USER}:${RUN_GROUP}
 
 WORKDIR		${KAFKA_INSTALL_DIR}
 

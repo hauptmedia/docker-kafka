@@ -11,6 +11,9 @@ if [ -z "$ADVERTISED_HOST_NAME" ]; then
 	ADVERTISED_HOST_NAME=$(hostname)
 fi
 
+BROKER_ID=${BROKER_ID:-0}
+
+sed 's/broker.id=0/broker.id=${BROKER_ID}/' -i config/server.properties
 sed 's/#advertised.host.name=<hostname routable by clients>/'advertised.host.name=${ADVERTISED_HOST_NAME}'/' -i config/server.properties
 sed 's/#host.name=localhost/'host.name=${HOST_NAME}'/' -i config/server.properties
 
